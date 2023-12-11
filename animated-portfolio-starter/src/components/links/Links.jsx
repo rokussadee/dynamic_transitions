@@ -26,9 +26,9 @@ const itemVariants = {
   },
 };
 
-const Links = () => {
-  const items = ["Brutal Death", "Technical Death", "Black", "Progressive", "Gore"]
-  return (
+const Links = () => { 
+  const items = ["Brutal Death", "Tech Death", "Black", "Prog", "Gore"]
+  return ( 
     <motion.div className="links" variants={variants}>
     {items.map((item) => (
       <motion.a
@@ -38,7 +38,11 @@ const Links = () => {
         whileHover={{scale:1.1}}
         whileTap={{scale:0.95}}
       >
-        {item}
+      {item.split(" ").map((word,index,array) => (
+        <p>
+        {word}
+        </p>
+      ))}
       </motion.a>
     ))}
     </motion.div>

@@ -2,6 +2,7 @@
 
 .navbar {
   height: 100px;
+  position: relative;
   .wrapper {
     max-width: 1366px;
     margin: auto;
@@ -16,7 +17,7 @@
   }
   span {
     font-weight: bold;
-    
+
     @include mobile {
       display: none;
     }

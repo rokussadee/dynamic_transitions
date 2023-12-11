@@ -5,22 +5,39 @@ import {motion} from "framer-motion";
 
 const variants = {
   open: {
-    width: 200,
+    width: 250,
     transition: {
-      type: "spring",
+      type: "tween",
       stiffness: 20,
     },
   },
   closed: {
     width: 100,
     transition: {
-      delay: 0.5,
-      type: "spring",
-      stiffness: 400,
-      damping: 40,
+      type: "tween",
+      velocity:50
     },
   },
 };
+
+const gradientVariants = {
+  open: {
+    left: 150,
+    transition: {
+      type: "tween",
+      stiffness: 20,
+    },
+  },
+  closed: {
+    left: 1,
+    transition: {
+      ease: "backOut",
+      type: "tween",
+      delay: .5,
+      velocity:50
+    },
+  }
+}
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
@@ -33,6 +50,9 @@ const Sidebar = () => {
       <motion.div className="bg" variants={variants}>
         <Links />
       </motion.div>
+      <motion.div className="gradient-wrapper"
+        variants={gradientVariants}
+      ></motion.div>
     </motion.div>
   )
 };
