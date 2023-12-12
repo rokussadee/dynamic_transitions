@@ -15,12 +15,10 @@
     bottom: 0;
     background: transparent;
     width: 100px;
-
   
     @include mobile {
       width: 200px;
     }
-
   }
 
   .gradient-wrapper {

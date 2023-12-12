@@ -31,7 +31,7 @@ const gradientVariants = {
   closed: {
     left: 1,
     transition: {
-      ease: "backOut",
+      ease: "easeOut",
       type: "tween",
       delay: .5,
       velocity:50
@@ -47,10 +47,13 @@ const Sidebar = () => {
       animate={open ? "open" : "closed"}
       whileHover="open"
     >
-      <motion.div className="bg" variants={variants}>
-        <Links />
+      <motion.div
+        className="bg"
+        variants={variants}>
+        <Links/>
       </motion.div>
-      <motion.div className="gradient-wrapper"
+      <motion.div
+        className="gradient-wrapper"
         variants={gradientVariants}
       ></motion.div>
     </motion.div>
