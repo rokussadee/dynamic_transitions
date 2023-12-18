@@ -1,5 +1,5 @@
 import "./sidebar.scss";
-import Links from "../links/Links";
+import Links from "../links/Links.tsx";
 import {useState, useEffect} from "react";
 import {motion} from "framer-motion";
 

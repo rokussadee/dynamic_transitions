@@ -1,5 +1,5 @@
 import "./navbar.scss";
-import Sidebar from "../sidebar/Sidebar";
+import Sidebar from "../sidebar/Sidebar.tsx";
 import {motion} from "framer-motion";
 
 const Navbar = () => {
@@ -11,11 +11,6 @@ const Navbar = () => {
        <span>
           Navbar
         </span>
-        <div className="social">
-          <a href="#">
-            <img src="facebook.png"/></a>
-        </div>
-
       </div>
    </div>
  )

@@ -1,5 +1,6 @@
 import {motion} from "framer-motion";
 import "./links.scss";
+import { Link } from "react-router-dom";
 
 const variants = {
   open: {
@@ -29,23 +30,24 @@ const itemVariants = {
 const Links = () => { 
   const items = ["Brutal Death", "Tech Death", "Black", "Prog", "Gore"]
   return ( 
-    <motion.div className="links" variants={variants}>
+    <motion.ul className="links" variants={variants}>
     {items.map((item) => (
-      <motion.a
-        href={`#${item}`}
+      <motion.li
         key={item}
         variants={itemVariants}
         whileHover={{scale:1.1}}
         whileTap={{scale:0.95}}
       >
+      <Link to={`/${item}`} key={item}>
       {item.split(" ").map((word,index,array) => (
-        <p>
+        <p key={index}>
         {word}
         </p>
       ))}
-      </motion.a>
+      </Link>
+      </motion.li>
     ))}
-    </motion.div>
+    </motion.ul>
     )
 };
 
