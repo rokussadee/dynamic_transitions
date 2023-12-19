@@ -1,4 +1,5 @@
 import Logo from "../logo/Logo.tsx";
+import GlassCard from "../glass-card/GlassCard.tsx";
 import { motion } from "framer-motion-3d";
 import { AnimatePresence } from "framer-motion";
 import "./collection.scss";
@@ -19,7 +20,7 @@ const logoVariants = {
   exit: ({direction, width}: {direction: number, width: number})  => ({ x: direction * width })
 }
 
-const Collection = ({genre}: {genre: string}) => {
+const Collection = ({genre, initialLogoIndex}: {genre: string, initialLogoIndex: number}) => {
   const [paths, setPaths] = useState<PathProperties[]>([]);
   const [pathProperties, setPathProperties]= useState<PathProperties | null>(null);
   const [currentLogoIndex, setCurrentLogoIndex] = useState(0);
@@ -100,18 +101,6 @@ console.log(direction)
 
               pathProps={pathProperties}
             />
-          </motion.div>
-          <motion.div className="glassmorph">
-            <AnimatePresence>
-              <motion.h1>
-                {genre}
-              </motion.h1>
-              <motion.div>
-                <motion.h2>
-                  {pathProperties.name}
-                </motion.h2>
-              </motion.div>
-            </AnimatePresence>
           </motion.div>
         </AnimatePresence>
       )}

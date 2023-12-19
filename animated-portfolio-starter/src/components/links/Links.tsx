@@ -1,6 +1,6 @@
-import {motion} from "framer-motion";
+import {motion, AnimatePresence} from "framer-motion";
 import "./links.scss";
-import { Link } from "react-router-dom";
+import { NavLink, NavLinkProps } from "react-router-dom";
 
 const variants = {
   open: {
@@ -18,12 +18,13 @@ const variants = {
 
 const itemVariants = {
   open: {
-    y: 0,
-    opacity: 1,
+    class: "active",
+    transition: {
+      duration: .5
+    }
   },
   closed: {
-    y: 50,
-    opacity: 0,
+    class: "inactive"
   },
 };
 
@@ -34,17 +35,20 @@ const Links = () => {
     {items.map((item) => (
       <motion.li
         key={item}
-        variants={itemVariants}
-        whileHover={{scale:1.1}}
-        whileTap={{scale:0.95}}
       >
-      <Link to={`/${item}`} key={item}>
-      {item.split(" ").map((word,index,array) => (
-        <p key={index}>
-        {word}
+      <AnimatePresence>
+      <NavLink
+        to={`/${item}`} 
+        key={`${item}_link`}
+        className={({ isActive, isPending }) =>
+          isPending ? "pending" : isActive ? "active" : ""
+        }
+      >
+        <p key={item}>
+        {item}
         </p>
-      ))}
-      </Link>
+      </NavLink>
+      </AnimatePresence>
       </motion.li>
     ))}
     </motion.ul>
