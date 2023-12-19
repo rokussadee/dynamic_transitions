@@ -19,9 +19,51 @@ const Navigation = () => {
             }
           />
         </Routes>
+        <CardWrapper/>
     </Router> 
   </AnimatePresence>
   )
+}
+
+const CardWrapper = () => {
+
+  const [paths, setPaths] = useState<PathProperties[]>([]);
+  const [pathProperties, setPathProperties]= useState<PathProperties | null>(null);
+  const [genre, setGenre] = useState<string>("Brutal Death Metal");
+  const [logoIndex, setLogoIndex] = useState<number>(0);
+
+  
+  const fetchPaths = async () => {
+      try {
+        const response = await fetch(`/svg_paths_${genre.replace(/ /g,"_").replace(/\//g,"").toLowerCase()}.json`);
+        const data = await response.json();
+        setPaths(data);
+        console.log(data)
+        setPathProperties(data[0]);
+      } catch (error) {
+        console.error("Error fetching SVG paths:", error);
+      }
+    };
+
+  useEffect(() => {
+  const {  genreParam,  logoIndexParam } = useParams();
+  if (genreParam && logoIndexParam) {
+    setGenre(genreParam)
+    setLogoIndex(parseInt(logoIndexParam));
+    fetchPaths();
+  }
+}, []);
+return (
+  <>
+    {pathProperties &&
+      <GlassCard
+      pathProperties={pathProperties}
+      genre={genre}
+      />
+    }
+  </>
+
+ ) 
 }
 
 const RouterContents = () => {
@@ -53,15 +95,9 @@ const RouterContents = () => {
 
  return (
   <>
- <Transition><section><Collection genre={genre} initialLogoIndex={logoIndex}/></section></Transition>
+    <Transition><section><Collection genre={genre} initialLogoIndex={logoIndex}/></section></Transition>
 
-    {pathProperties &&
-      <GlassCard
-      pathProperties={pathProperties}
-      genre={genre}
-      />
-    }
-    </>
+  </>
 
  ) 
 }
